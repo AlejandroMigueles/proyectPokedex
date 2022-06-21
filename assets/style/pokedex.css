@@ -3,44 +3,52 @@
 .parent {
     display: grid;
     grid-template-columns: 0.5fr repeat(6, 1fr) 0.5fr;
-    grid-template-rows: 0.5fr repeat(5, 1fr);
+    grid-template-rows: 0.2fr 0.2fr 0.5fr  repeat(3, 1fr) 0.2fr;
     grid-column-gap: 10px;
     grid-row-gap: 6px;
+    }
+
+    .headerTitle { grid-area: 2 / 4 / 3 / 8; }
+    .pokedexInfo { grid-area: 3 / 2 / 7 / 4; }
+    .generationPokedex { grid-area: 3 / 4 / 4 / 8; }
+    .cardsPokedex { grid-area: 4 / 4 / 7 / 8; }
+
+.headerTitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-    .headerTitle { grid-area: 1 / 2 / 2 / 8; }
-    .pokedexInfo { grid-area: 2 / 2 / 6 / 4; }
-    .generationPokedex { grid-area: 2 / 4 / 3 / 8; }
-    .cardsPokedex { grid-area: 3 / 4 / 6 / 8; }
+.generationPokedex img {
+    width: 2.5vw;
+    height: 4.5vh;
+}
 
-
-
+.generationPokedex {
+    font-size: 0.8em;
+}
 
 body {
-    background-color: #f0f0f0;
+    background-image: url(/proyectoPokedex/assets/img/fondo.jpeg);
+    /* background-image: url(https://p4.wallpaperbetter.com/wallpaper/129/802/387/pokeballs-pokedex-pokemon-wallpaper-preview.jpg); */
     font-family: 'Press Start 2P', cursive;
-    font-size: 14px;
+    font-size: 1em;
     font-weight: 400;
     line-height: 1.42857143;
-    color: #333;
+    color: rgb(255, 255, 255);
     margin: 0;
     padding: 0;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
+
+
 .parent {
-    height: 100%;
-    width: 100%;
-}
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    height: 100vh;
+    width: 100vw;
+    opacity: 1;
 }
 
 .card-info p span{
@@ -51,18 +59,14 @@ body {
     text-align: center;
 }
 
-
 .panel-info {
     display: grid;
     grid-template-columns: 50% 50%;
-    min-height: 7vh;
 }
 
 .regions {
     display: grid;
-    grid-template-columns: 25% 25% 25% 25%;
-    min-height: 12vh;
-    margin: 4vh 0;
+    grid-template-columns: repeat(8, 1fr);
 }
 
 .item-region {
@@ -77,4 +81,56 @@ body {
     height: 40px;
 }
 
+.pokemon-list {
+    display: grid;
+    grid-template-areas: "div div div div "
+        "div div div div  ";
+    height: 56vh;
+    width: 56vw;
+    overflow-y: scroll;
+    border: 1px solid whitesmoke;
+    border-radius: 5px;
+    font-size: 0.7rem;
+}
 
+.pokedexInfo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.center {
+    text-align: center;
+}
+
+.search-bar {
+    display: flex;
+    flex-direction: row;
+    height: max-content;
+    width: max-content;
+}
+.search-bar button {
+    background-image: url("https://zoraidavallejo.github.io/pokedex/images/pokeball.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #f03e33;
+    width: 34px;
+    height: 34px;
+    right: 0;
+    border-radius: 5px;
+    box-shadow: 0 0 7px #f36b63;
+  }
+  .search-bar button:hover {
+    background-color: #e01c10;
+  }
+
+  .search-bar input {
+    border: 1px solid rgb(10, 10, 10);
+    border-radius: 5px;
+    padding: 5px;
+    padding-left: 10px;
+    height: auto;
+    width: auto;
+    box-shadow: 0px 0px 10px #e9f0f8;
+  }
