@@ -76,6 +76,12 @@ body {
     align-items: center;
 }
 
+.regions button {
+    color: #e9f0f8;
+    border: none;
+    background-color: transparent;
+}
+
 .icon-region {
     width: 40px;
     height: 40px;
@@ -121,8 +127,9 @@ body {
     border-radius: 5px;
     box-shadow: 0 0 7px #f36b63;
   }
-  .search-bar button:hover {
-    background-color: #e01c10;
+button:hover {
+    cursor: pointer;
+    border-bottom: #f03e33;
   }
 
   .search-bar input {
