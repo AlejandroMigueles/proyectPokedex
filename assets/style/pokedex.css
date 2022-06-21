@@ -1,6 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+.parent {
+    display: grid;
+    grid-template-columns: 0.5fr repeat(6, 1fr) 0.5fr;
+    grid-template-rows: 0.5fr repeat(5, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 6px;
+}
+
+    .headerTitle { grid-area: 1 / 2 / 2 / 8; }
+    .pokedexInfo { grid-area: 2 / 2 / 6 / 4; }
+    .generationPokedex { grid-area: 2 / 4 / 3 / 8; }
+    .cardsPokedex { grid-area: 3 / 4 / 6 / 8; }
+
+
+
+
 body {
-    background-color: #f2f2f2;
-    font-family: 'Roboto', sans-serif;
+    background-color: #f0f0f0;
+    font-family: 'Press Start 2P', cursive;
     font-size: 14px;
     font-weight: 400;
     line-height: 1.42857143;
@@ -13,13 +31,10 @@ body {
     justify-content: center;
 }
 
-.parent{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.parent {
+    height: 100%;
+    width: 100%;
 }
-
 .container {
     display: flex;
     flex-direction: column;
@@ -35,3 +50,31 @@ body {
     justify-content: center;
     text-align: center;
 }
+
+
+.panel-info {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    min-height: 7vh;
+}
+
+.regions {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    min-height: 12vh;
+    margin: 4vh 0;
+}
+
+.item-region {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-region {
+    width: 40px;
+    height: 40px;
+}
+
+

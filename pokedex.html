@@ -9,34 +9,77 @@
     <title> Pokedex</title>
 </head>
 <body>
-    <header class="center">
-        <img class="title" src="./assets/img/title.png" alt="title" height="100vh">
-    </header>
-
-
-        <input type="image" src="./assets/img/pokedex1.jpg"style="border: none;" height="420"/>
-
-        <div class="container">
-            <div class="card">
-                <div class="card-image">
-                    <!-- <img src="./assets/img/pokeball.png" alt="pokemon"> -->
+    <div class="parent">
+        <div class="headerTitle">
+            <img class="title" src="./assets/img/title.png" alt="title" height="100vh">
+        </div>
+        <div class="pokedexInfo">
+            <section>
+                <input type="image" src="./assets/img/pokedex1.jpg"style="border: none;" height="420"/>
+            </section>
+            <section class="search-bar">
+                <input id="search" type="text" placeholder="nombre del pokemon" />
+            </section>
+        </div>
+        <div class="generationPokedex">
+            <section class="panel-info">
+                <div class="center">
+                    <span class="bold">Total: </span> n
                 </div>
-                <div class="card-info">
-                    <h2>Pokemon</h2>
-                    <p>
-                        <span>Nombre:</span>
-                        <span>Tipo:</span>
-                        <span>Poder:</span>
-                        <span>Debilidad:</span>
-                        <span>Altura:</span>
-                        <span>Peso:</span>
-                        <span>Generación:</span>
-                        <span>Descripción:</span>
-                    </p>
+                <div class="center">
+                    <span class="bold">Capturados: </span>: n
+                </div>
+            </section>
+            <section class="regions">
+                <div id="kanto" class="item-region">
+                    <img class="icon-region" src="./assets/img/pokeball.png" alt="imagen pokedex">
+                    <br />
+                    <span class="bold">Kanto</span>
+                    <span>(151)</span>
+                </div>
+                <div id="johto" class="item-region">
+                    <img class="icon-region" src="./assets/img/pokeball.png" alt="imagen pokedex">
+                    <br />
+                    <span class="bold">Johto</span>
+                    <span>(100)</span>
+                </div>
+                <div id="hoenn" class="item-region">
+                    <img class="icon-region" src="./assets/img/pokeball.png" alt="imagen pokedex">
+                    <br />
+                    <span class="bold">Hoenn</span>
+                    <span>(131)</span>
+                </div>
+                <div id="sinnoh" class="item-region">
+                    <img class="icon-region" src="./assets/img/pokeball.png" alt="imagen pokedex">
+                    <br />
+                    <span class="bold">Sinnoh</span>
+                    <span>(100)</span>
+                </div>
+            </section>
+        </div>
+        <div class="cardsPokedex">
+            <div class="container">
+                <div class="card">
+                    <div class="card-image">
+                        <!-- <img src="./assets/img/pokeball.png" alt="pokemon"> -->
+                    </div>
+                    <div class="card-info">
+                        <h2>Pokemon</h2>
+                        <p>
+                            <span>Nombre:</span>
+                            <span>Tipo:</span>
+                            <span>Poder:</span>
+                            <span>Debilidad:</span>
+                            <span>Altura:</span>
+                            <span>Peso:</span>
+                            <span>Generación:</span>
+                            <span>Descripción:</span>
+                        </p>
+                    </div>
                 </div>
             </div>
-    </div>
-
+        </div>
+        </div>
 </body>
 <script src="./assets/script/podedex.js"></script>
 </html>
