@@ -5,10 +5,7 @@ const NOT_IMAGE_TEXT = 'la imagen del pokemon';
 let globalPokemons = [];
 
 const cleanView = () => {
-    if (mainDiv.innerHTML = ''){
-        region="https://pokeapi.co/api/v2/pokemon/?limit=3"
-    }
-    
+    mainDiv.innerHTML = ''
     //globalPokemons = []; // cuando inserto esta funcion también elimina el render pokemon
     //entonces es necesario crear una nueva función que las elimine en ordenes distintos
 }
@@ -99,31 +96,36 @@ boton.forEach(function (item){
     item.addEventListener('click', function(){
         if(item.id==='buttonKanto'){
             cleanRenderCardPokemon();
-            region="https://pokeapi.co/api/v2/pokemon/?offset=6&limit=9"
+            region="https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20"
     }
         else if(item.id==='buttonJohto'){
             cleanRenderCardPokemon();
-            region="https://pokeapi.co/api/v2/pokemon/?offset=10&limit=13"
+            region="https://pokeapi.co/api/v2/pokemon/?offset=151&limit=20"
     }
         else if(item.id==='buttonHoenn'){
             cleanRenderCardPokemon();
-            region="https://pokeapi.co/api/v2/pokemon/?offset=14&limit=16"
+            region="https://pokeapi.co/api/v2/pokemon/?offset=251&limit=20"
     }
     else if(item.id==='buttonSinnoh'){
         cleanRenderCardPokemon();
-        region="https://pokeapi.co/api/v2/pokemon/?offset=17&limit=20"
+        region="https://pokeapi.co/api/v2/pokemon/?offset=386&limit=20"
     }
     else if(item.id==='buttonTeselia'){
-        region="https://pokeapi.co/api/v2/pokemon/?offset=45&limit=15"
+        cleanRenderCardPokemon();
+        region="https://pokeapi.co/api/v2/pokemon/?offset=494&limit=15"
     }
+
     else if(item.id==='buttonKalos'){
-        region="https://pokeapi.co/api/v2/pokemon/?offset=60&limit=15"
+        cleanRenderCardPokemon();
+        region="https://pokeapi.co/api/v2/pokemon/?offset=649&limit=15"
     }
     else if(item.id==='buttonAlola'){
-        region="https://pokeapi.co/api/v2/pokemon/?offset=75&limit=15"
+        cleanRenderCardPokemon();
+        region="https://pokeapi.co/api/v2/pokemon/?offset=721&limit=15"
     }
     else if(item.id==='buttonGalar'){
-        region="https://pokeapi.co/api/v2/pokemon/?offset=90&limit=15"
+        cleanRenderCardPokemon();
+        region="https://pokeapi.co/api/v2/pokemon/?offset=809&limit=15"
     }
     main();
 
