@@ -5,14 +5,22 @@ const NOT_IMAGE_TEXT = 'la imagen del pokemon';
 let globalPokemons = [];
 
 const cleanView = () => {
-    mainDiv.innerHTML = '';
-    globalPokemons = [];
+    if (mainDiv.innerHTML = ''){
+        region="https://pokeapi.co/api/v2/pokemon/?limit=3"
+    }
+    
+    //globalPokemons = []; // cuando inserto esta funcion también elimina el render pokemon
+    //entonces es necesario crear una nueva función que las elimine en ordenes distintos
 }
 
+ const cleanRenderCardPokemon=  () => {
+     globalPokemons = [];
+ }
 
 
 
-const searchWithFilter = (searchingText) => {
+
+const searchWithFilter = (searchingText) => { //esta funcion es la que busca a los pokemons	y los muestra
     const filteredPokemon = globalPokemons.filter((pokemon) => {
         const { name } = pokemon;
         if (name.includes(searchingText)) {
@@ -90,39 +98,32 @@ boton.forEach(function (item){
     console.log(item);
     item.addEventListener('click', function(){
         if(item.id==='buttonKanto'){
-            region="https://pokeapi.co/api/v2/pokemon/?limit=9"
-
-        console.log(region);
+            cleanRenderCardPokemon();
+            region="https://pokeapi.co/api/v2/pokemon/?offset=6&limit=9"
     }
         else if(item.id==='buttonJohto'){
-            region="https://pokeapi.co/api/v2/pokemon/?offset=0&limit=15"
-        alert("hola2")
-        console.log(region);
+            cleanRenderCardPokemon();
+            region="https://pokeapi.co/api/v2/pokemon/?offset=10&limit=13"
     }
         else if(item.id==='buttonHoenn'){
-            region="https://pokeapi.co/api/v2/pokemon/?offset=15&limit=15"
-        alert("hola3")
+            cleanRenderCardPokemon();
+            region="https://pokeapi.co/api/v2/pokemon/?offset=14&limit=16"
     }
     else if(item.id==='buttonSinnoh'){
-        region="https://pokeapi.co/api/v2/pokemon/?offset=30&limit=15"
-    alert("hola4")
+        cleanRenderCardPokemon();
+        region="https://pokeapi.co/api/v2/pokemon/?offset=17&limit=20"
     }
     else if(item.id==='buttonTeselia'){
         region="https://pokeapi.co/api/v2/pokemon/?offset=45&limit=15"
-    alert("hola5")
     }
     else if(item.id==='buttonKalos'){
         region="https://pokeapi.co/api/v2/pokemon/?offset=60&limit=15"
-    alert("hola6")
-    console.log(region);
     }
     else if(item.id==='buttonAlola'){
         region="https://pokeapi.co/api/v2/pokemon/?offset=75&limit=15"
-    alert("hola7")
     }
     else if(item.id==='buttonGalar'){
         region="https://pokeapi.co/api/v2/pokemon/?offset=90&limit=15"
-        console.log(region);
     }
     main();
 
