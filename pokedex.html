@@ -9,141 +9,123 @@
     <title> Pokedex</title>
 </head>
 <body>
-    <div class="parent">
-        <div class="headerTitle">
-            <img class="title" src="./assets/img/title.png" alt="title" height="90vh" width="200vw">
-        </div>
-        <div class="pokedexInfo">
-            <section class="search-bar">
-                <input id="search" type="text" placeholder="nombre del pokemon" />
-                <select name="" id="">
-                    <option value="">Nombre</option>
-                    <option value="">tipo</option>
-                </select>
-                <button type="checkbox" onclick="fetchPokemon()"></button>
-            </section>
 
-            <section>
-                <input type="image" src="./assets/img/pokedex1.jpg"style="border: none;" height="420"/>
-            </section>
-        </div>
-        <div class="generationPokedex">
-            <section class="panel-info">
-                <div class="center">
-                    <span class="bold">Total: </span> n
-                </div>
-                <div class="center">
-                    <span class="bold">Capturados: </span> n
-                </div>
-            </section>
-            <section class="regions">
-                <button>
-                    <div id="kanto" class="item-region">
+        <div class="parent">
+            <div class="headerTitle">
+                <img class="title" src="./assets/img/title.png" alt="title" height="90vh" width="200vw">
+            </div>
+            <div class="pokedexInfo">
+                <section class="search-bar">
+                    <input id="search" type="text" placeholder="nombre del pokemon" />
+                    <select name="" id="">
+                        <option value="">Nombre</option>
+                        <option value="">tipo</option>
+                    </select>
+                    <button ></button>
+                </section>
+    
+                <section>
+                    <!-- <input type="image" src="./assets/img/pokedex1.jpg"style="border: none;" height="420"/> -->
+                    <div class="container">
+                            <div class="card-info">
+                                <h2>Nombre</h2>
+                                <div class="card-image">
+                                    <img src="./assets/img/pokeball.png" alt="pokemon" width="150px">
+                                </div>
+                                <p>
+                                    <span>Tipo:</span>
+                                    <span>Altura:</span>
+                                    <span>Peso:</span>
+                                    <span>Generación:</span>
+                                    <span>Descripción:</span>
+                                </p>
+                            </div>
+                    </div>
+                </section>
+            </div>
+            <div class="generationPokedex">
+                <!-- <section class="panel-info">
+                    <div class="center">
+                        <span class="bold">Total: </span> n
+                    </div>
+                    <div class="center">
+                        <span class="bold">Capturados: </span> n
+                    </div>
+                </section> -->
+                <section class="regions">
+
+                    <button type="radio" id="buttonKanto" name="buttonRegion">
                         <img class="icon-region" src="./assets/img/pokeball.png" alt="imagen pokedex">
                         <span class="bold">Kanto</span>
                         <span>(151)</span>
-                    </div>
-                </button>
-                <button>
-                    <div id="johto" class="item-region">
+                    </button>
+
+                    <button  type="radio" id="buttonJohto" name="buttonRegion">
                         <img class="icon-region" src="./assets/img/pokeball.png" alt="imagen pokedex">
                         <span class="bold">Johto</span>
                         <span>(100)</span>
-                    </div>
-                </button>
-
-                <button>
-                    <div id="hoenn" class="item-region">
+                    </button>
+    
+                    <button type="radio" id="buttonHoenn" name="buttonRegion">
                         <img class="icon-region" src="./assets/img/pokeball.png" alt="imagen pokedex">
                         <span class="bold">Hoenn</span>
                         <span>(131)</span>
-                    </div>
-                </button>
+                    </button>
+    
+                    <button type="radio" id="buttonSinnoh" name="buttonRegion">
+                            <img class="icon-region" src="./assets/img/pokeball.png" alt="imagen pokedex">
+                            <span class="bold">Sinnoh</span>
+                            <span>(151)</span>
+                    </button>
+    
+                    <button type="radio" id="buttonTeselia" name="buttonRegion">
+                            <img class="icon-region" src="./assets/img/pokeball.png" alt="imagen pokedex">
+                            <span class="bold">Teselia</span>
+                            <span>(155)</span>
+                    </button>
+    
+                    <button type="radio" id="buttonKalos" name="buttonRegion">
 
-                <button>
-                    <div id="sinnoh" class="item-region">
-                        <img class="icon-region" src="./assets/img/pokeball.png" alt="imagen pokedex">
-                        <span class="bold">Sinnoh</span>
-                        <span>(151)</span>
-                    </div>
-                </button>
+                            <img class="icon-region" src="./assets/img/pokeball.png" alt="imagen pokedex">
+                            <span class="bold">Kalos</span>
+                            <span>(457)</span>
 
-                <button>
-                    <div id="teselia" class="item-region">
-                        <img class="icon-region" src="./assets/img/pokeball.png" alt="imagen pokedex">
-                        <span class="bold">Teselia</span>
-                        <span>(155)</span>
-                    </div>
-                </button>
-
-                <button>
-                    <div id="kalos" class="item-region">
-                        <img class="icon-region" src="./assets/img/pokeball.png" alt="imagen pokedex">
-                        <span class="bold">Kalos</span>
-                        <span>(457)</span>
-                    </div>
-                </button>
-
-                <button>
-                    <div id="alola" class="item-region">
-                        <img class="icon-region" src="./assets/img/pokeball.png" alt="imagen pokedex">
-                        <span class="bold">Alola</span>
-                        <span>(302)</span>
-                    </div>
-                </button>
-                
-                <button>
-                    <div id="Galar" class="item-region">
-                        <img class="icon-region" src="./assets/img/pokeball.png" alt="imagen pokedex">
-                        <span class="bold">Galar</span>
-                        <span>(400)</span>
-                    </div>
-                </button>
-                
-
-
-
-            </section>
-        </div>
-        <div class="cardsPokedex">
-            <main id="container-pokemons" class="pokemon-list">
-                <!-- 
-                <div class="center">
-                    <img class="icon-region" src="./assets/media/img/pokeball.png" alt="imagen pokedex">
-                    <br />
-                    <span>Bulbasaur</span>
-                </div> 
-                -->
-            </main>
-        </div>
-    </div>
-
-
-
-
-
-
-        <!-- <img src="./assets/img/pokeball.png" alt="pokemon"> -->
-        <!-- <div class="container">
-            <div class="card">
-                <div class="card-image">
-
-                </div>
-                <div class="card-info">
-                    <h2>Pokemon</h2>
-                    <p>
-                        <span>Nombre:</span>
-                        <span>Tipo:</span>
-                        <span>Poder:</span>
-                        <span>Debilidad:</span>
-                        <span>Altura:</span>
-                        <span>Peso:</span>
-                        <span>Generación:</span>
-                        <span>Descripción:</span>
-                    </p>
-                </div>
+                    </button>
+    
+                    <button type="radio" id="buttonAlola" name="buttonRegion">
+                            <img class="icon-region" src="./assets/img/pokeball.png" alt="imagen pokedex">
+                            <span class="bold">Alola</span>
+                            <span>(302)</span>
+                    </button>
+                    
+                    <button type="radio" id="buttonGalar" name="buttonRegion">
+                            <img class="icon-region" src="./assets/img/pokeball.png" alt="imagen pokedex">
+                            <span class="bold">Galar</span>
+                            <span>(400)</span>
+                    </button>
+                    
+    
+    
+    
+                </section>
             </div>
-    </div> -->
+            <div class="cardsPokedex">
+                <main id="container-pokemons" class="pokemon-list">
+                    <!-- 
+                    <div class="center">
+                        <img class="icon-region" src="./assets/media/img/pokeball.png" alt="imagen pokedex">
+                        <br />
+                        <span>Bulbasaur</span>
+                    </div> 
+                    -->
+                </main>
+            </div>
+        </div>
+
+
+
+
+
 
 </body>
 <script src="./assets/js/podedex.js"></script>
