@@ -8,7 +8,7 @@ const seachElement = document.querySelector('#search');
 const NOT_IMAGE_TEXT = 'la imagen del pokemon';
 let globalPokemons = [];
 let offset=0;
-const limit=50;
+const limit=9;
 let region="https://pokeapi.co/api/v2/pokemon/?offset=0&limit=5";
 
 const obtentRegion = () => {
@@ -177,7 +177,7 @@ boton.forEach(function (item){
 
 // // // Creamos un boton de paginacion
 // const btnNext=document.querySelector('#btnNext');
-// const btnPrevious=document.querySelector('#btnPrev');
+// const btnPrevious=document.quercd ySelector('#btnPrev');
 // //escribimos una funcion que nos permita cambiar la pagina
 // btnNext.addEventListener('click',() => {
 //     offset+=limit;

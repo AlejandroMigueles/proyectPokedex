@@ -123,19 +123,30 @@ body {
 .centerCard {
     text-align: center;
     font-family: "Press Start 2P";
+    color: aliceblue;
+    background-color: transparent;
+    background-image: url("/proyectoPokedex/assets/img/pokemonFont.svg");
+    background-size: cover;
     border-color: whitesmoke;
-}
-
-
-
-.pokemonImgDiv {
-    background-image: url(/proyectoPokedex/assets/img/pokemonFont.svg);
-    background-size: auto;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    margin: 5px;
     background-repeat: no-repeat;
     background-position: center;
 }
 
 
+button:hover {
+    cursor: pointer;
+    border-bottom: #f03e33;
+}
+
+.regions input[type=radio]:checked {
+    color: black;
+    background-color: #f03e33;
+    padding-left: 70px;
+}
 
 
 .search-bar {
