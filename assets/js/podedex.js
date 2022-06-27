@@ -45,7 +45,7 @@ const searchWithFilter = (searchingText) => {
 seachElement.addEventListener('keyup', (event) => {
     const inputText = event?.target?.value || '';
     let pokemosGlobal2 =  [ ...globalPokemons ]; // globalPokemons.slice(0, globalPokemons.length)
-    pokemosGlobal2 = searchWithFilter(inputText);
+    pokemosGlobal2 = searchWithFilter(inputText.toLowerCase());
     cleanView();
     renderPokemons(pokemosGlobal2);
 });
