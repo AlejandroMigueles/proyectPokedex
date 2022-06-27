@@ -144,19 +144,6 @@ body {
     height: max-content;
     width: max-content;
 }
-.search-bar button {
-    background-image: url("https://zoraidavallejo.github.io/pokedex/images/pokeball.svg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-color: #f03e33;
-    width: 34px;
-    height: 34px;
-    right: 0;
-    border-radius: 5px;
-    box-shadow: 0 0 7px #f36b63;
-}
-
-
 
 .search-bar input {
     border: 1px solid rgb(10, 10, 10);

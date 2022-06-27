@@ -7,11 +7,12 @@ const mainDiv = document.querySelector('#container-pokemons');
 const seachElement = document.querySelector('#search');
 const NOT_IMAGE_TEXT = 'la imagen del pokemon';
 let globalPokemons = [];
-var offset=0;
-const limit=9;
+let offset=0;
+const limit=50;
 let region="https://pokeapi.co/api/v2/pokemon/?offset=0&limit=5";
 
 const obtentRegion = () => {
+    cleanRenderCardPokemon();
     region="https://pokeapi.co/api/v2/pokemon/?offset="+offset+"&limit="+limit;
 }
 
@@ -107,91 +108,91 @@ const renderPokemons = (pokemons) => {
 
 async function main() {
     cleanView();
-    console.log(region);
+    cleanRenderCardPokemon();
     await getPokemons();
     renderPokemons(globalPokemons);
 }
 
 //esta funcion se encarga de cambiar el region de los pokemons de acuerdo al boton seleccionado
 const boton=document.querySelectorAll('button');
-boton.forEach(function (item){
-    console.log(item);
-    item.addEventListener('click', function(){
-        if(item.id==='buttonKanto'){
-            cleanRenderCardPokemon();
-            offset=0;
-            obtentRegion();
-        }
-        else if(item.id==='buttonJohto'){
-            cleanRenderCardPokemon();
-            offset=151;
-            obtentRegion();
-    }
-        else if(item.id==='buttonHoenn'){
-            cleanRenderCardPokemon();
-            cleanRenderCardPokemon();
-            offset=251;
-            obtentRegion();
-    }
-    else if(item.id==='buttonSinnoh'){
-        cleanRenderCardPokemon();
-        offset=386;
-        obtentRegion();
-    }
-    else if(item.id==='buttonTeselia'){
-        cleanRenderCardPokemon();
-        offset=494;
-        obtentRegion();
-    }
 
-    else if(item.id==='buttonKalos'){
-        cleanRenderCardPokemon();
-        offset=649;
-        obtentRegion();    }
-    else if(item.id==='buttonAlola'){
-        cleanRenderCardPokemon();
-        offset=721;
-        obtentRegion();
-    }
-    else if(item.id==='buttonGalar'){
-        cleanRenderCardPokemon();
-        offset=809;
-        obtentRegion();
-    }
+boton.forEach(function (item){
+    item.addEventListener('click', function(){
+        switch(item.id){
+            case'buttonKanto':
+                offset=0;
+                obtentRegion();
+            break;
+            case'buttonJohto':
+                offset=151;
+                obtentRegion();
+            break;
+            case'buttonHoenn':
+                offset=251;
+                obtentRegion();
+            break;
+            case'buttonSinnoh':
+                offset=386;
+                obtentRegion();
+            break;
+            case 'buttonTeselia':
+                offset=494;
+                obtentRegion();
+            break;
+            case 'buttonKalos':
+                offset=649;
+                obtentRegion();
+            break;
+            case 'buttonAlola':
+                offset=721;
+                obtentRegion();
+            break;
+            case 'buttonGalar':
+                offset=809;
+                obtentRegion();
+            break;
+            case 'btnNext':
+                offset+=limit;
+                obtentRegion();
+            break;
+            case 'btnPrev':
+                offset-=limit;
+                if(offset>=0){
+                    obtentRegion();
+                }else{
+                    swal("Tranquilo, entrenador!", "No hay más pokemons antes de Bulbasaur", "warning");
+                    offset=0;
+                    obtentRegion();
+                }
+            break;
+            default:
+                region="https://pokeapi.co/api/v2/pokemon/?offset=0&limit=4";
+            break;
+        }
 
     main();
-
 })
 }
 )
 
-// // Creamos un boton de paginacion
-const btnNext=document.querySelector('#btnNext');
-const btnPrevious=document.querySelector('#btnPrev');
-//escribimos una funcion que nos permita cambiar la pagina
-btnNext.addEventListener('click',() => {
-    offset+=9;
-    cleanRenderCardPokemon();
-    obtentRegion();
-    cleanRenderCardPokemon();
-});
+// // // Creamos un boton de paginacion
+// const btnNext=document.querySelector('#btnNext');
+// const btnPrevious=document.querySelector('#btnPrev');
+// //escribimos una funcion que nos permita cambiar la pagina
+// btnNext.addEventListener('click',() => {
+//     offset+=limit;
+//     obtentRegion();
+//     cleanRenderCardPokemon();
+//     alert(region);
+// });
 
-btnPrevious.addEventListener('click',() => {
-    offset-=9
-    cleanRenderCardPokemon();
-    obtentRegion();
-    cleanRenderCardPokemon();
-}
-);
+// btnPrevious.addEventListener('click',() => {
+//     offset-=9
+//     cleanRenderCardPokemon();
+//     obtentRegion();
+//     cleanRenderCardPokemon();
+// }
+// );
 
 
 main();
-
-//Esta es una funcion de prueba para entender como está organizada la informacion de la api
-function fetchPokemon(id) {
-    return fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
-        .then(response => response.json())
-        .then(data => console.log(data))
-}
-
-fetchPokemon(4)
