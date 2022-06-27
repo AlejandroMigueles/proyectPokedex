@@ -170,11 +170,19 @@ const btnNext=document.querySelector('#btnNext');
 const btnPrevious=document.querySelector('#btnPrev');
 //escribimos una funcion que nos permita cambiar la pagina
 btnNext.addEventListener('click',() => {
-    offset+=limit;
+    offset+=9;
+    cleanRenderCardPokemon();
     obtentRegion();
     cleanRenderCardPokemon();
 });
 
+btnPrevious.addEventListener('click',() => {
+    offset-=9
+    cleanRenderCardPokemon();
+    obtentRegion();
+    cleanRenderCardPokemon();
+}
+);
 
 
 main();
