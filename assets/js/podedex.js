@@ -54,21 +54,30 @@ seachElement.addEventListener('keyup', (event) => {
 
 const getPokemons = async () => { /*obtiene los datos */
     const response= await fetch(region);
+    //console.log(region);
     const responseJson =  await response.json();
+    //console.log(responseJson);
     const pokemons = responseJson.results;
+    //console.log(pokemons);
     for(const element of pokemons){
-        const response = await fetch(element.url);
-        const imgResponseJson = await response.json();
+        const response = await fetch(element.url); //0btenemos la url del pokemon
+        const imgResponseJson = await response.json();//obtenemos el json de la url
         normalizePokemonData(element.name, imgResponseJson)
     };
+    console.log(globalPokemons);
 };
 
 
 const normalizePokemonData =  (name, imgResponseJson) => {
     const img = imgResponseJson?.sprites?.other['official-artwork']?.front_default || '';
-    const pokemon = { name: name, img: img};
+    const id= imgResponseJson?.id || '';
+    const typePokemon= imgResponseJson?.types?.map((type) => type.type.name) || '';
+    const pokemon = { name: name, img: img, id: id, type: typePokemon };
     globalPokemons.push(pokemon);
 };
+
+
+
 
 const renderCardPokemon = (element, index) => {
 
@@ -77,12 +86,17 @@ const renderCardPokemon = (element, index) => {
     const pokemonImgDiv= document.createElement('div');
     const pokemonImg = document.createElement('img');
     const brElement = document.createElement('br');
+    const dataPokemon = document.createElement('div');
     const pokemonNameSpan = document.createElement('span');
+    const pokemonIdSpan = document.createElement('span');
+    const pokemonTypeSpan = document.createElement('span');
 
     //este código brinda las clases a los elementos creados anteriormente
     cardPokemonDiv.className = 'centerCard';
     pokemonImgDiv.className = 'pokemonImgDiv';
     pokemonImg.className = 'icon-region';
+    dataPokemon.className = 'dataPokemon';
+
 
     //brinda un atributo al elemento seleccionado, en este ccaso el pokemonImg
     //la sintaxis nos dice Element.setAttribute(name(del atributo), value);
@@ -97,8 +111,15 @@ const renderCardPokemon = (element, index) => {
     
     pokemonImgDiv.appendChild(pokemonImg);
     cardPokemonDiv.appendChild(brElement);
-    cardPokemonDiv.appendChild(pokemonNameSpan);
+    cardPokemonDiv.appendChild(dataPokemon);
+    dataPokemon.appendChild(pokemonIdSpan);
+    dataPokemon.appendChild(pokemonNameSpan);
+    dataPokemon.appendChild(pokemonTypeSpan);
+
+    //añade cosas del Json al html
     pokemonNameSpan.innerHTML = element.name;
+    pokemonIdSpan.innerHTML = "#00"+element.id;
+    pokemonTypeSpan.innerHTML = element.type;
 
 }
 
@@ -160,7 +181,7 @@ boton.forEach(function (item){
                 if(offset>=0){
                     obtentRegion();
                 }else{
-                    swal("Tranquilo, entrenador!", "No hay más pokemons antes de Bulbasaur", "warning");
+                    swal("Tranquilo, entrenador!", "No hay pokemons antes de Bulbasaur", "warning");
                     offset=0;
                     obtentRegion();
                 }
