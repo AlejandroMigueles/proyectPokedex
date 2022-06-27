@@ -8,8 +8,8 @@ const seachElement = document.querySelector('#search');
 const NOT_IMAGE_TEXT = 'la imagen del pokemon';
 let globalPokemons = [];
 let offset=0;
-const limit=9;
-let region="https://pokeapi.co/api/v2/pokemon/?offset=0&limit=5";
+const limit=6;
+let region="https://pokeapi.co/api/v2/pokemon/?offset=0&limit=6";
 
 const obtentRegion = () => {
     cleanRenderCardPokemon();
@@ -54,17 +54,13 @@ seachElement.addEventListener('keyup', (event) => {
 
 const getPokemons = async () => { /*obtiene los datos */
     const response= await fetch(region);
-    //console.log(region);
     const responseJson =  await response.json();
-    //console.log(responseJson);
     const pokemons = responseJson.results;
-    //console.log(pokemons);
     for(const element of pokemons){
         const response = await fetch(element.url); //0btenemos la url del pokemon
         const imgResponseJson = await response.json();//obtenemos el json de la url
         normalizePokemonData(element.name, imgResponseJson)
     };
-    console.log(globalPokemons);
 };
 
 
@@ -118,7 +114,7 @@ const renderCardPokemon = (element, index) => {
 
     //añade cosas del Json al html
     pokemonNameSpan.innerHTML = element.name;
-    pokemonIdSpan.innerHTML = "#00"+element.id;
+    pokemonIdSpan.innerHTML = "#"+ element.id.toString().padStart(3, '0');
     pokemonTypeSpan.innerHTML = element.type;
 
 }
@@ -187,7 +183,7 @@ boton.forEach(function (item){
                 }
             break;
             default:
-                region="https://pokeapi.co/api/v2/pokemon/?offset=0&limit=4";
+                region="https://pokeapi.co/api/v2/pokemon/?offset=0&limit=6";
             break;
         }
 

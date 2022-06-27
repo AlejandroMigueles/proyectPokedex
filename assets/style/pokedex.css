@@ -160,12 +160,6 @@ button:hover {
     border-bottom: #f03e33;
 }
 
-.regions input[type=radio]:checked {
-    color: black;
-    background-color: #f03e33;
-    padding-left: 70px;
-}
-
 
 .search-bar {
     display: flex;
