@@ -153,7 +153,8 @@ body {
 
 button:hover {
     cursor: pointer;
-    border-bottom: #f03e33;
+    border-radius: 10px;
+    border: 3px solid #f03e33;
 }
 
 .search-bar {
@@ -196,5 +197,6 @@ button:hover {
 .pagination :hover{
     cursor: pointer;
     background-color: #f03e33;
+    border: 1px solid whitesmoke;
 }
 
