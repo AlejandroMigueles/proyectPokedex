@@ -11,6 +11,7 @@ let globalPokemons = [];
 let offset=0;
 const limit=6;
 let region="https://pokeapi.co/api/v2/pokemon/?offset=0&limit=6";
+init();
 
 const obtentRegion = () => {
     cleanRenderCardPokemon();
@@ -169,6 +170,8 @@ const boton=document.querySelectorAll('button');
 
 boton.forEach(function (item){
     item.addEventListener('click', function(){
+        borrar();
+        init();
         switch(item.id){
             case'buttonKanto':
                 offset=0;
@@ -231,6 +234,33 @@ function borrar(){
     cardInfo.innerHTML="";
 }
 
+function init(){
+    const name=document.createElement('h2');
+        const cardDivImage= document.createElement('div');
+        const cardImg = document.createElement('img');
+        const cardP= document.createElement('p');
+        const pokemonIdSpan = document.createElement('span');
+        const cardTipoSpan= document.createElement('span');
+        const cardPesoSpan= document.createElement('span');
+        const cardAlturaSpan= document.createElement('span');
 
+        cardImg.setAttribute('src', "./assets/img/pokeball.png");
+        cardImg.setAttribute('alt', NOT_IMAGE_TEXT);
+        cardImg.setAttribute('width', '150px"');
+
+        cardInfo.appendChild(name);
+        cardInfo.appendChild(cardDivImage);
+        cardDivImage.appendChild(cardImg);
+        cardInfo.appendChild(cardP);
+        cardP.appendChild(pokemonIdSpan);
+        cardP.appendChild(cardTipoSpan);
+        cardP.appendChild(cardPesoSpan);
+        cardP.appendChild(cardAlturaSpan);
+        name.innerHTML = "name";
+        pokemonIdSpan.innerHTML = "número";
+        cardTipoSpan.innerHTML = "Tipo: ";
+        cardPesoSpan.innerHTML = "Peso: ";
+        cardAlturaSpan.innerHTML = "Altura: ";
+}
 
 
