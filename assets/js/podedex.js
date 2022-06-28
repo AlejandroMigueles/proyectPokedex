@@ -4,6 +4,7 @@
 //Por ejemplo: document.querySelector('#id') busca el elemento con el id indicado
 //Por ejemplo: document.querySelector('.class') busca el elemento con la clase indicada
 const mainDiv = document.querySelector('#container-pokemons');
+const cardPokemon1=document.querySelector('#cardInfo')
 const seachElement = document.querySelector('#search');
 const NOT_IMAGE_TEXT = 'la imagen del pokemon';
 let globalPokemons = [];
@@ -30,7 +31,7 @@ const cleanRenderCardPokemon=  () => {
 }
 
 //esta funcion es la que busca a los pokemons	y los muestra
-const searchWithFilter = (searchingText) => {
+const searchWithFilterName = (searchingText) => {
     const filteredPokemon = globalPokemons.filter((pokemon) => {
         const { name } = pokemon;
         if (name.includes(searchingText)) {
@@ -40,17 +41,28 @@ const searchWithFilter = (searchingText) => {
     return filteredPokemon;
 }
 
+const searchWithFilterType = (searchingText) => {
+    const filteredPokemon = globalPokemons.filter((pokemon) => {
+        const { types } = pokemon;
+        if (types.includes(searchingText)) {
+            return pokemon;
+        }
+    });
+    return filteredPokemon;
+}
+
+
+
+
 //usa el evento keyup para buscar los pokemons
 //keyup es un evento que se activa cuando se suelta una tecla presionada
 seachElement.addEventListener('keyup', (event) => {
     const inputText = event?.target?.value || '';
     let pokemosGlobal2 =  [ ...globalPokemons ]; // globalPokemons.slice(0, globalPokemons.length)
-    pokemosGlobal2 = searchWithFilter(inputText.toLowerCase());
+    pokemosGlobal2 = searchWithFilterName(inputText.toLowerCase());
     cleanView();
     renderPokemons(pokemosGlobal2);
 });
-
-
 
 const getPokemons = async () => { /*obtiene los datos */
     const response= await fetch(region);
@@ -63,17 +75,15 @@ const getPokemons = async () => { /*obtiene los datos */
     };
 };
 
-
 const normalizePokemonData =  (name, imgResponseJson) => {
     const img = imgResponseJson?.sprites?.other['official-artwork']?.front_default || '';
     const id= imgResponseJson?.id || '';
     const typePokemon= imgResponseJson?.types?.map((type) => type.type.name) || '';
-    const pokemon = { name: name, img: img, id: id, type: typePokemon };
+    const weight= imgResponseJson?.weight || '';
+    const height= imgResponseJson?.height || '';
+    const pokemon = { name: name, img: img, id: id, type: typePokemon , weight: weight, height: height };
     globalPokemons.push(pokemon);
 };
-
-
-
 
 const renderCardPokemon = (element, index) => {
 
@@ -86,25 +96,23 @@ const renderCardPokemon = (element, index) => {
     const pokemonNameSpan = document.createElement('span');
     const pokemonIdSpan = document.createElement('span');
     const pokemonTypeSpan = document.createElement('span');
-
     //este código brinda las clases a los elementos creados anteriormente
     cardPokemonDiv.className = 'centerCard';
     pokemonImgDiv.className = 'pokemonImgDiv';
     pokemonImg.className = 'icon-region';
     dataPokemon.className = 'dataPokemon';
 
-
     //brinda un atributo al elemento seleccionado, en este ccaso el pokemonImg
     //la sintaxis nos dice Element.setAttribute(name(del atributo), value);
     //los atributos validos son: name, src,
+    cardPokemonDiv.setAttribute('id',"pokemon"+element.id);
+    cardPokemonDiv.setAttribute('type', "radio");
     pokemonImg.setAttribute('src', element.img);
     pokemonImg.setAttribute('alt', NOT_IMAGE_TEXT);
 
     //esta porción de código inserta los elementos creados anteriormente al html en cascada (Uno dentro del otro)
     mainDiv.appendChild(cardPokemonDiv);
-
     cardPokemonDiv.appendChild(pokemonImgDiv);
-    
     pokemonImgDiv.appendChild(pokemonImg);
     cardPokemonDiv.appendChild(brElement);
     cardPokemonDiv.appendChild(dataPokemon);
@@ -116,7 +124,39 @@ const renderCardPokemon = (element, index) => {
     pokemonNameSpan.innerHTML = element.name;
     pokemonIdSpan.innerHTML = "#"+ element.id.toString().padStart(3, '0');
     pokemonTypeSpan.innerHTML = element.type;
+    // pokemonWeightSpan.innerHTML = "Peso: "+ element.weight + " kg";
+    // pokemonHeightSpan.innerHTML = "Altura: "+ element.height + " m";
 
+    cardPokemonDiv.addEventListener('click', function(){
+        borrar();
+        const name=document.createElement('h2');
+        const cardDivImage= document.createElement('div');
+        const cardImg = document.createElement('img');
+        const cardP= document.createElement('p');
+        const pokemonIdSpan = document.createElement('span');
+        const cardTipoSpan= document.createElement('span');
+        const cardPesoSpan= document.createElement('span');
+        const cardAlturaSpan= document.createElement('span');
+
+        cardImg.setAttribute('src', element.img);
+        cardImg.setAttribute('alt', NOT_IMAGE_TEXT);
+        cardImg.setAttribute('width', '200px');
+
+        cardInfo.appendChild(name);
+        cardInfo.appendChild(cardDivImage);
+        cardDivImage.appendChild(cardImg);
+        cardInfo.appendChild(cardP);
+        cardP.appendChild(pokemonIdSpan);
+        cardP.appendChild(cardTipoSpan);
+        cardP.appendChild(cardPesoSpan);
+        cardP.appendChild(cardAlturaSpan);
+        name.innerHTML = element.name;
+        pokemonIdSpan.innerHTML = "#"+ element.id.toString().padStart(3, '0');
+        cardTipoSpan.innerHTML = "Tipo: "+ element.type;
+        cardPesoSpan.innerHTML = "Peso: "+ element.weight + " kg";
+        cardAlturaSpan.innerHTML = "Altura: "+ element.height + " m";
+        }
+    );
 }
 
 const renderPokemons = (pokemons) => {
@@ -192,24 +232,12 @@ boton.forEach(function (item){
 }
 )
 
-// // // Creamos un boton de paginacion
-// const btnNext=document.querySelector('#btnNext');
-// const btnPrevious=document.quercd ySelector('#btnPrev');
-// //escribimos una funcion que nos permita cambiar la pagina
-// btnNext.addEventListener('click',() => {
-//     offset+=limit;
-//     obtentRegion();
-//     cleanRenderCardPokemon();
-//     alert(region);
-// });
-
-// btnPrevious.addEventListener('click',() => {
-//     offset-=9
-//     cleanRenderCardPokemon();
-//     obtentRegion();
-//     cleanRenderCardPokemon();
-// }
-// );
-
-
 main();
+
+function borrar(){
+    cardInfo.innerHTML="";
+}
+
+
+
+
