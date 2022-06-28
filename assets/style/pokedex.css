@@ -88,9 +88,9 @@ body {
     font-size: xx-small;
 }
 
-.regions button:hover {
+.regions :hover {
     cursor: pointer;
-    border-bottom: #f03e33;
+    border: 1px transparent;
 }
 
 .icon-region {
