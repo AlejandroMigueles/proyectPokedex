@@ -54,9 +54,6 @@ body {
     flex-direction: column;
 }
 
-
-
-
 .cardInfo p span{
     display: flex;
     flex-direction: column;
@@ -135,7 +132,6 @@ body {
     background-position: center;
 }
 
-
 .dataPokemon {
     display: flex;
     flex-direction: column;
@@ -155,12 +151,10 @@ body {
 
 }
 
-
 button:hover {
     cursor: pointer;
     border-bottom: #f03e33;
 }
-
 
 .search-bar {
     display: flex;

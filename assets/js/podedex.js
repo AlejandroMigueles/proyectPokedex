@@ -17,12 +17,9 @@ const obtentRegion = () => {
     region="https://pokeapi.co/api/v2/pokemon/?offset="+offset+"&limit="+limit;
 }
 
-
 //Esta funcion limpia el input de busqueda
 const cleanView = () => {
     mainDiv.innerHTML = ''
-    //globalPokemons = []; // cuando inserto esta funcion también elimina el render pokemon
-    //entonces es necesario crear una nueva función que las elimine en ordenes distintos
 }
 
 //esta funcion limpia el array que contiene los pokemons a mostrar
@@ -50,9 +47,6 @@ const searchWithFilterType = (searchingText) => {
     });
     return filteredPokemon;
 }
-
-
-
 
 //usa el evento keyup para buscar los pokemons
 //keyup es un evento que se activa cuando se suelta una tecla presionada
@@ -226,7 +220,6 @@ boton.forEach(function (item){
                 region="https://pokeapi.co/api/v2/pokemon/?offset=0&limit=6";
             break;
         }
-
     main();
 })
 }
