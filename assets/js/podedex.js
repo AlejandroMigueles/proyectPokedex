@@ -147,8 +147,8 @@ const renderCardPokemon = (element, index) => {
         name.innerHTML = element.name;
         pokemonIdSpan.innerHTML = "#"+ element.id.toString().padStart(3, '0');
         cardTipoSpan.innerHTML = "Tipo: "+ element.type;
-        cardPesoSpan.innerHTML = "Peso: "+ element.weight + " kg";
-        cardAlturaSpan.innerHTML = "Altura: "+ element.height + " m";
+        cardPesoSpan.innerHTML = "Peso: "+ element.weight/10 + " kg";
+        cardAlturaSpan.innerHTML = "Altura: "+ element.height/10 + " m";
         }
     );
 }
