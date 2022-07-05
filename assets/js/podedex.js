@@ -9,7 +9,7 @@ const seachElement = document.querySelector('#search');
 const NOT_IMAGE_TEXT = 'la imagen del pokemon';
 let globalPokemons = [];
 let offset=0;
-const limit=6;
+const limit=9;
 let region="https://pokeapi.co/api/v2/pokemon/?offset=0&limit=6";
 init();
 
