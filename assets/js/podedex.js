@@ -9,13 +9,18 @@ const seachElement = document.querySelector('#search');
 const NOT_IMAGE_TEXT = 'la imagen del pokemon';
 let globalPokemons = [];
 let offset=0;
-const limit=9;
-let region="https://pokeapi.co/api/v2/pokemon/?offset=0&limit=6";
+let id=0;
+const limit=50;
+let region="https://pokeapi.co/api/v2/pokemon/?offset=0&limit=7";
 init();
 
 const obtentRegion = () => {
     cleanRenderCardPokemon();
     region="https://pokeapi.co/api/v2/pokemon/?offset="+offset+"&limit="+limit;
+}
+
+const obtentUrlDescription =() =>{
+    urlDescription="https://pokeapi.co/api/v2/pokemon-species/"+id+"/"
 }
 
 //Esta funcion limpia el input de busqueda
@@ -80,6 +85,9 @@ const normalizePokemonData =  (name, imgResponseJson) => {
     globalPokemons.push(pokemon);
 };
 
+
+
+
 const renderCardPokemon = (element, index) => {
 
     //esta porción de código crea los elementos de la tarjeta para despues poder insertarlos al html
@@ -124,6 +132,7 @@ const renderCardPokemon = (element, index) => {
 
     cardPokemonDiv.addEventListener('click', function(){
         borrar();
+        const contCard=document.createElement('button')
         const name=document.createElement('h2');
         const cardDivImage= document.createElement('div');
         const cardImg = document.createElement('img');
@@ -137,10 +146,11 @@ const renderCardPokemon = (element, index) => {
         cardImg.setAttribute('alt', NOT_IMAGE_TEXT);
         cardImg.setAttribute('width', '200px');
 
-        cardInfo.appendChild(name);
-        cardInfo.appendChild(cardDivImage);
+        cardInfo.appendChild(contCard)
+        contCard.appendChild(name);
+        contCard.appendChild(cardDivImage);
         cardDivImage.appendChild(cardImg);
-        cardInfo.appendChild(cardP);
+        contCard.appendChild(cardP);
         cardP.appendChild(pokemonIdSpan);
         cardP.appendChild(cardTipoSpan);
         cardP.appendChild(cardPesoSpan);
@@ -150,6 +160,22 @@ const renderCardPokemon = (element, index) => {
         cardTipoSpan.innerHTML = "Tipo: "+ element.type;
         cardPesoSpan.innerHTML = "Peso: "+ element.weight/10 + " kg";
         cardAlturaSpan.innerHTML = "Altura: "+ element.height/10 + " m";
+
+
+
+        contCard.addEventListener('click', function()
+        {   id=element.id;
+            obtentUrlDescription();
+            console.log(urlDescription);
+            const description= document.getElementById('description');
+            fetch(urlDescription)
+            .then(response => response.json())
+            .then(data => {
+                description.innerHTML = data.flavor_text_entries[3].flavor_text;
+            }
+            )
+            .catch(error => console.log(error));
+        })
         }
     );
 }
@@ -219,8 +245,12 @@ boton.forEach(function (item){
                     obtentRegion();
                 }
             break;
+            case 'cardInfo':
+                offset=5;  //* hay que revisar esta parte para que muestre las tarjetas
+                obtentRegion();
+                break;
             default:
-                region="https://pokeapi.co/api/v2/pokemon/?offset=0&limit=6";
+                region;
             break;
         }
     main();
@@ -235,32 +265,35 @@ function borrar(){
 }
 
 function init(){
+    const contCard=document.createElement('button')
     const name=document.createElement('h2');
-        const cardDivImage= document.createElement('div');
-        const cardImg = document.createElement('img');
-        const cardP= document.createElement('p');
-        const pokemonIdSpan = document.createElement('span');
-        const cardTipoSpan= document.createElement('span');
-        const cardPesoSpan= document.createElement('span');
-        const cardAlturaSpan= document.createElement('span');
+    const cardDivImage= document.createElement('div');
+    const cardImg = document.createElement('img');
+    const cardP= document.createElement('p');
+    const pokemonIdSpan = document.createElement('span');
+    const cardTipoSpan= document.createElement('span');
+    const cardPesoSpan= document.createElement('span');
+    const cardAlturaSpan= document.createElement('span');
+    const description=document.createElement('span');
 
-        cardImg.setAttribute('src', "./assets/img/pokeball.png");
-        cardImg.setAttribute('alt', NOT_IMAGE_TEXT);
-        cardImg.setAttribute('width', '150px"');
+    cardImg.setAttribute('src', "./assets/img/pokeball.png");
+    cardImg.setAttribute('alt', NOT_IMAGE_TEXT);
+    cardImg.setAttribute('width', '150px"');
 
-        cardInfo.appendChild(name);
-        cardInfo.appendChild(cardDivImage);
-        cardDivImage.appendChild(cardImg);
-        cardInfo.appendChild(cardP);
-        cardP.appendChild(pokemonIdSpan);
-        cardP.appendChild(cardTipoSpan);
-        cardP.appendChild(cardPesoSpan);
-        cardP.appendChild(cardAlturaSpan);
-        name.innerHTML = "name";
-        pokemonIdSpan.innerHTML = "número";
-        cardTipoSpan.innerHTML = "Tipo: ";
-        cardPesoSpan.innerHTML = "Peso: ";
-        cardAlturaSpan.innerHTML = "Altura: ";
+    cardInfo.appendChild(contCard)
+    contCard.appendChild(name);
+    contCard.appendChild(cardDivImage);
+    cardDivImage.appendChild(cardImg);
+    contCard.appendChild(cardP);
+    cardP.appendChild(pokemonIdSpan);
+    cardP.appendChild(cardTipoSpan);
+    cardP.appendChild(cardPesoSpan);
+    cardP.appendChild(cardAlturaSpan);
+    name.innerHTML = "name";
+    pokemonIdSpan.innerHTML = "número";
+    cardTipoSpan.innerHTML = "Tipo: ";
+    cardPesoSpan.innerHTML = "Peso: ";
+    cardAlturaSpan.innerHTML = "Altura: ";
 }
 
 
