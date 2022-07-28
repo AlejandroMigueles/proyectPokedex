@@ -81,7 +81,8 @@ const normalizePokemonData =  (name, imgResponseJson) => {
     const typePokemon= imgResponseJson?.types?.map((type) => type.type.name) || '';
     const weight= imgResponseJson?.weight || '';
     const height= imgResponseJson?.height || '';
-    const pokemon = { name: name, img: img, id: id, type: typePokemon , weight: weight, height: height };
+    const stats= imgResponseJson?.stats?.map((stat) => stat.base_stat) || '';
+    const pokemon = { name: name, img: img, id: id, type: typePokemon , weight: weight, height: height , stats: stats};
     globalPokemons.push(pokemon);
 };
 
@@ -169,6 +170,7 @@ const renderCardPokemon = (element, index) => {
             obtentUrlDescription();
             console.log(urlDescription);
             const description= document.getElementById('description');
+            const stat= document.getElementById('stats');
             let boton = document.querySelector("#cardInfo");
             let botonCerrar= document.querySelector(".close")
             let audioEtiqueta = document.querySelector("audio")
@@ -188,7 +190,21 @@ const renderCardPokemon = (element, index) => {
             fetch(urlDescription)
             .then(response => response.json())
             .then(data => {
-                description.innerHTML=data.flavor_text_entries[3].flavor_text;
+                if (id>=1 && id<=151) {
+                description.innerHTML=data.flavor_text_entries[59].flavor_text;}
+                else if (id>=152 && id<=251) {
+                description.innerHTML=data.flavor_text_entries[47].flavor_text;}
+                else if(id>=252 && id<=386) {
+                description.innerHTML=data.flavor_text_entries[20].flavor_text;}
+                else if(id>=386 && id<=494){
+                description.innerHTML=data.flavor_text_entries[31].flavor_text;}
+                else if(id>=495 && id<=649){
+                    description.innerHTML=data.flavor_text_entries[10].flavor_text;}
+                else if(id>=650 && id<=721){
+                    description.innerHTML=data.flavor_text_entries[4].flavor_text;}
+                else if(id>=722){
+                    description.innerHTML=data.flavor_text_entries[5].flavor_text;}
+                    stat.innerHTML=data.stats[0].stat.name+" "+data.stats[0].base_stat;
             }
             )
             .catch(error => console.log(error));
