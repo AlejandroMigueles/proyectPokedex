@@ -10,8 +10,8 @@ const NOT_IMAGE_TEXT = 'la imagen del pokemon';
 let globalPokemons = [];
 let offset=0;
 let id=0;
-const limit=50;
-let region="https://pokeapi.co/api/v2/pokemon/?offset=0&limit=7";
+const limit=30;
+let region="https://pokeapi.co/api/v2/pokemon/?offset=0&limit=30";
 init();
 
 const obtentRegion = () => {
@@ -132,7 +132,7 @@ const renderCardPokemon = (element, index) => {
 
     cardPokemonDiv.addEventListener('click', function(){
         borrar();
-        const contCard=document.createElement('button')
+        const contCard=document.createElement('a')
         const name=document.createElement('h2');
         const cardDivImage= document.createElement('div');
         const cardImg = document.createElement('img');
@@ -142,6 +142,7 @@ const renderCardPokemon = (element, index) => {
         const cardPesoSpan= document.createElement('span');
         const cardAlturaSpan= document.createElement('span');
 
+        contCard.setAttribute('href', "#openModal");
         cardImg.setAttribute('src', element.img);
         cardImg.setAttribute('alt', NOT_IMAGE_TEXT);
         cardImg.setAttribute('width', '200px');
@@ -168,10 +169,26 @@ const renderCardPokemon = (element, index) => {
             obtentUrlDescription();
             console.log(urlDescription);
             const description= document.getElementById('description');
+            let boton = document.querySelector("#cardInfo");
+            let botonCerrar= document.querySelector(".close")
+            let audioEtiqueta = document.querySelector("audio")
+
+            boton.addEventListener("click", () => {
+            audioEtiqueta.setAttribute("src", "http://www.sonidosmp3gratis.com/sounds/pokemon-opening.mp3")
+            audioEtiqueta.play()
+            console.log(`Reproduciendo: ${audioEtiqueta.src}`)
+            })
+
+            botonCerrar.addEventListener("click", () => {
+            audioEtiqueta.setAttribute("src", "")
+            audioEtiqueta.pause()
+            console.log(`Reproduciendo: ${audioEtiqueta.src}`)
+            })
+
             fetch(urlDescription)
             .then(response => response.json())
             .then(data => {
-                description.innerHTML = data.flavor_text_entries[3].flavor_text;
+                description.innerHTML=data.flavor_text_entries[3].flavor_text;
             }
             )
             .catch(error => console.log(error));
